@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>История уборок — Swissôtel</title>
+  <style>body{font-family:Arial;background:#f4f1eb;color:#183028;max-width:720px;margin:40px auto;padding:0 20px}.card{background:#fff;border-radius:10px;padding:16px;margin:10px 0;box-shadow:0 3px 18px #0001}.time{color:#777;font-size:14px}</style>
+</head>
+<body>
+  <h1>История отметок уборки</h1>
+  <p>Время указано по серверному часовому поясу.</p>
+  {% for mark in marks %}
+    <div class="card"><strong>{{ mark.location }}</strong><div class="time">{{ mark.created_at.strftime('%d.%m.%Y %H:%M:%S') }} · {{ mark.employee_name }}</div>{% if mark.note %}<div>Комментарий сотрудника: {{ mark.note }}</div>{% endif %}{% if mark.reviews %}<div style="margin-top:12px"><strong>Отзывы после этой уборки:</strong>{% for review in mark.reviews %}<div style="margin-top:8px;border-top:1px solid #ddd;padding-top:8px">{{ review.created_at.strftime('%d.%m.%Y %H:%M') }} · ⭐ {{ review.rating }}/5<br>{{ review.comment }}</div>{% endfor %}</div>{% else %}<div style="margin-top:12px;color:#777">Комментариев гостей после этой уборки пока нет.</div>{% endif %}</div>
+  {% else %}
+    <p>Отметок пока нет.</p>
+  {% endfor %}
+</body>
+</html>

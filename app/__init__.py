@@ -1,0 +1,1 @@
+"""Swissôtel Care & Rewards application."""

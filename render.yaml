@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: swissotel-care-rewards
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run_web.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
+      - key: WEB_HOST
+        value: 0.0.0.0
+  - type: worker
+    name: swissotel-telegram-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run_bot.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
